@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import heapq
+import sys
+import re
 
 t_nutrition = pd.read_csv('food_data.csv', header=0, names=['id', 'food_group', 'long_descr', 'short_descr', 'water',
                                                             'energy', 'protein', 'lipid', 'carbohydrate', 'fiber',
@@ -22,12 +24,15 @@ def compare(f_item, f_that, nut = False):
 
 def interpret(f_item_string):
     list_idx = []
+    no_match_max = 0;
+    no_match_shortest = sys.maxsize;
+    no_match_idx = -1;
     tuple = 0 # NEW
     max = 0 # NEW
     heapq.heapify(list_idx)
-    key_words = f_item_string.split(" ")
+    key_words = re.split("\W+", f_item_string)
     for i in range(nut_arr.shape[0]):
-        targets = nut_arr[i][2].split(", ")
+        targets = re.split("\W+", nut_arr[i][2])
         for j in range(len(targets)):
             targets[j] = targets[j].lower()
         count = 0
@@ -38,11 +43,17 @@ def interpret(f_item_string):
         if (count):
             if(nut_arr[i][2].split(", ")[0].lower() == key_words[len(key_words) - 1].lower()):
                 heapq.heappush(list_idx, (-count, i))
+        if (count != 0 and count == no_match_max and len(targets) < no_match_shortest or count > no_match_max):
+            no_match_idx = i
+            no_match_max = count
+            no_match_shortest = len(targets)
 
     # NEW
     candidates = []
     if(len(list_idx) == 0):
-        return -1
+        if(no_match_idx != -1):
+            print(nut_arr[no_match_idx][2])
+        return no_match_idx, False
     else:
         tuple = heapq.heappop(list_idx)
         candidates.append(tuple[1])
@@ -51,23 +62,26 @@ def interpret(f_item_string):
     while(tuple[0] == max and len(list_idx) != 0):
         candidates.append(heapq.heappop(list_idx)[1])
     print(candidates)
-    return candidates[0]
+    print(nut_arr[candidates[0]][2])
+    return candidates[0], True
 
 def similar_entries(n, f_item_string, nut = None):
-    f_item = interpret(f_item_string)
-    f_item_plural = interpret(f_item_string + "s")
-    f_item_plural_plus = interpret(f_item_string + "es")
+    f_item, f_item_match = interpret(f_item_string)
+    f_item_plural, f_item_plural_match = interpret(f_item_string + "s")
+    f_item_plural_plus, f_item_plural_plus_match = interpret(f_item_string + "es")
+
+    if(f_item_match or f_item_plural_match or f_item_plural_plus_match):
+        if(not f_item_match):
+            f_item = -1
+        if(not f_item_plural_match):
+            f_item_plural = -1
+        if(not f_item_plural_plus_match):
+            f_item_plural_plus = -1
 
     # not found go to error:
     if(f_item + f_item_plural + f_item_plural_plus == -3):
         return "match not found for " + f_item_string
 
-    if(f_item != -1):
-        print(nut_arr[f_item][2])
-    if(f_item_plural != -1):
-        print(nut_arr[f_item_plural][2])
-    if (f_item_plural_plus != -1):
-        print(nut_arr[f_item_plural_plus][2])
     best_matches_idx = []
     heapq.heapify(best_matches_idx)
     for i in range(nut_arr.shape[0]):
@@ -87,9 +101,11 @@ def similar_entries(n, f_item_string, nut = None):
                 heapq.heappush(best_matches_idx, (-compare(f_item_plural, i, nut), i))
             if (f_item_plural_plus != -1):
                 heapq.heappush(best_matches_idx, (-compare(f_item_plural_plus, i, nut), i))
+            while (len(best_matches_idx) > n):
+                heapq.heappop(best_matches_idx)
     best_matches = []
     for i in range(len(best_matches_idx)):
         best_matches.append(nut_arr[best_matches_idx[i][1]][2])
     return best_matches
 
-print(similar_entries(5, "apple"))
+print(similar_entries(3, "burger"))
