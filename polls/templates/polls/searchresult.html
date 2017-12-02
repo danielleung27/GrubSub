@@ -1,0 +1,91 @@
+{% load static %}
+<html>
+<title>search result</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,300i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+<head>
+	<script>
+		function printedQueries(search_term) {
+			var queries = new Array();
+
+			return queries;
+		}
+	</script>
+	<script>
+		function openFood(id) {
+			var x = document.getElementById(id);
+			if (x.className.indexOf("w3-show") == -1) {
+				x.className += " w3-show";
+				x.previousElementSibling.className = 
+					x.previousElementSibling.className.replace("w3-green", "w3-yellow");
+			}
+			else {
+				x.className = x.className.replace(" w3-show", "");
+				x.previousElementSibling.className = 
+					x.previousElementSibling.className.replace("w3-yellow", "w3-green");
+			}
+		}
+	</script>
+</head>
+
+
+<!-- <h1 id="title">{{ title }}</h1> -->
+
+<!-- nav bar at the top -->
+<div class="w3-bar w3-white w3-border-bottom w3-xlarge w3-border">
+	<a href="index" class="w3-bar-item w3-button w3-text-green w3-hover-green w3-hover-text-white w3-left w3-padding-16" style = "width: 14%""><b><i class="fa fa-cutlery w3-margin-right"></i>foother</b></a>
+	<a href="directory" class="w3-bar-item-small w3-button w3-text-green w3-hover-green w3-hover-text-white w3-right w3-padding-16" style = "width: 14%"><i>directory</i></a>
+	<a href="index" class="w3-bar-item-small w3-button w3-text-green w3-hover-green w3-hover-text-white w3-right w3-padding-16" style = "width: 14%"><i>new search</i></a>
+</div>
+
+<!-- search -->
+<div id="search">
+	{% if search_term %}
+	<div id = "search_query">
+		<h3>{{ search_query }}</h3>
+	</div>
+	{% else %}
+	<div id = "search_query">
+		<h3>Search Query</h3>
+	</div>
+	{% endif %}
+
+	<div id="search_results" class="w3-container">
+		{% if search_results %}
+			<h3>{{search_results.length}} Results Returned </h3>
+			<script>
+				/* var foods = printedQueries(search_term); */
+				var i;
+				var foods = ["apple", "banana", "orange"];
+				for (i = 0; i < foods.length; i++) {
+					resultsStr += '<div class="w3-button w3-block w3-green w3-left-align">' + '<h3>Name: ' +
+					foods[i] + '</h3>' +
+								'<div id="results_content" class="w3-container w3-hide">' + '<p>Information ' + '</p>' + '</div>' + '</div>';
+				}
+				$('#results-container').html(resultsStr);
+				var $items = $('.w3-button');
+				$items.find('h3').click(openFood('h3'));
+
+				}
+			</script>
+			<!-- <ul>
+				{% for result in search_results %}
+				<li>
+					<p>#{{ result.number }}</p>
+					<div> {{ result.name }} </div>
+				</li>
+				{% endfor %}
+			</ul> -->
+		{% else %}
+		<h3><em>No results returned. Try another search?</em></h3>
+		<img id ="sad_cone" src="https://media.giphy.com/media/26xBK9cIkUSQ104k8/source.gif"/>
+		{% endif %}
+	</div>
+</div>
+</html>

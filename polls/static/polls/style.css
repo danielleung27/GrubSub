@@ -1,7 +1,32 @@
-body {
-	color: #152151;
-	font-family: Source Sans Pro, sans-serif;
-	padding: 50px;
+html, body {
+	background-color: #f9f7fb;
+	margin: 0;
+	height: 100%;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+	color: white;
+	font-family: "Oxygen", Verdana, Source Sans Pro, sans-serif;
+	font-size: 150%;
+	padding: 10px;
+}
+
+.w3-bar-item {
+	font-family: "Oxygen", sans-serif;
+}
+
+.w3-row-padding {
+	font-family: "Lato", sans-serif;
+}
+
+.w3-bar-item-small {
+	font-family: "Lato", sans-serif;
+	transition-delay: 0.1s;
+}
+
+.myLink {
+	display: none;
 }
 
 #title {
@@ -12,6 +37,13 @@ body {
 	padding: 5%;
 	height: 100%;
 	background-color: #daffaf;
+	font-size: 15;
+    font-family: inherit;
+}
+
+input {
+	font-size: 15;
+    font-family: inherit;
 }
 
 #search_results {
@@ -22,7 +54,7 @@ body {
 	height: 100%;
 	float: right;
 	background-color: white;
-	box-shadow: 0px 0px 8px #2b5100;
+	/* box-shadow: 0px 0px 8px #2b5100; */
 }
 
 #search_results img {
@@ -38,5 +70,5 @@ body {
 	min-height: 150px;
 	color: black;
 	background-color: white;
-	box-shadow: 0px 0px 8px #2b5100;
+	/* box-shadow: 0px 0px 8px #2b5100; */
 }
