@@ -11,6 +11,8 @@ t_nutrition = pd.read_csv('food_data.csv', header=0, names=['id', 'food_group', 
 # normal numpy array
 nut_arr = np.array(t_nutrition.as_matrix())
 
+
+# add a comment
 # difference of only one nutrient
 def compare(f_item, f_that, nut = False):
     if(nut == "cpf"):
