@@ -1,0 +1,44 @@
+<!-- {% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %} -->
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+<h1 id="title">{{ title }}</h1>
+
+<div id="search">
+	{% if search_term %}
+	<div id = "search_query">
+		<h3>{{ search_query }}</h3>
+	</div>
+	{% else %}
+	<div id = "search_query">
+		<h3>Search Query</h3>
+	</div>
+	{% endif %}
+
+	<div id="search_results">
+		{% if search_results %}
+			<h3>{{search_results.length}} Results Returned </h3>
+			<ul>
+				{% for result in search_results %}
+				<li>
+					<p>#{{ result.number }}</p>
+					<div> {{ result.name }} </div>
+				</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+		<h3><em>No results returned. Try another search?</em></h3>
+		<img id ="sad_cone" src="https://media.giphy.com/media/26xBK9cIkUSQ104k8/source.gif"/>
+		{% endif %}
+	</div>
+</div>
