@@ -9,10 +9,22 @@ body {
 }
 
 #search {
-	padding: 5%;
-	height: 100%;
-	background-color: #daffaf;
+	/*padding: 5%;
+	height: 100%;*/
+	/*background-color: #daffaf;*/
+	font-size: 15;
+    font-family: inherit;
 }
+
+#main_search {
+
+}
+
+input {
+	font-size: 15;
+    font-family: inherit;
+}
+
 
 #search_results {
 	display: inline-block;
