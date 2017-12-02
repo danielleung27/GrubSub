@@ -1,23 +1,24 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+#from django.utils.encoding import python_2_unicode_compatible
 
-@python_2_unicode_compatible 
-class Question(models.Model):
-	question_text = models.CharField(max_length=200)
-	pub_date = models.DateTimeField('date published')
-	def __str__(self):
-		return self.question_text
-	def was_published_recently(self):
-		return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
-
-@python_2_unicode_compatible 
-class Choice(models.Model):
-	question = models.ForeignKey(Question, on_delete = models.CASCADE)
-	choice_text = models.CharField(max_length=200)
-	votes = models.IntegerField(default=0)
-	def __str__(self):
-		return self.choice_text
+# django model for food listings
+class Listing(models.Model):
+    id = models.IntegerField()
+    food_group = models.CharField(max_length=200)
+    long_descr = models.CharField(max_length=200)
+    short_descr = models.CharField(max_length=200)
+    water = models.FloatField()
+    energy = models.IntegerField()
+    protein = models.FloatField()
+    trans_fat = models.FloatField()
+    carbohydrate = models.FloatField()
+    fiber = models.FloatField()
+    sugar = models.FloatField()
+    ca = models.FloatField()
+    sat_fat = models.FloatField()
+    cholesterol = models.FloatField()
+    vitamin_b = models.FloatField()
+    na = models.FloatField()
