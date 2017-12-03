@@ -7,7 +7,7 @@ import numpy as np
 
 class FoodSearch:
     def __init__(self):
-        t_nutrition = pd.read_csv('food_data.csv', header=0,
+        t_nutrition = pd.read_csv('polls/food_data.csv', header=0,
                                   names=['id', 'food_group', 'long_descr', 'short_descr', 'water',
                                          'energy', 'protein', 'lipid', 'carbohydrate', 'fiber',
                                          'sugar', 'ca', 'sat_fat', 'cholesterol', 'v_b', 'na'])
@@ -81,7 +81,7 @@ class FoodSearch:
 
         # not found go to error:
         if(f_item + f_item_plural + f_item_plural_plus == -3):
-            return "match not found for " + f_item_string
+            return []
 
         best_matches_idx = []
         heapq.heapify(best_matches_idx)

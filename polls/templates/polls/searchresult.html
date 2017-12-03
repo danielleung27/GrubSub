@@ -40,7 +40,7 @@
 
 <!-- nav bar at the top -->
 <nav class="w3-text-green navbar navbar-toggleable-md navbar-light bg-faded">
-  <a class="navbar-brand" href="/">foother</a>
+  <a class="navbar-brand" href="/">grubsub</a>
 
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -67,35 +67,16 @@
 	{% else %}
 	<div id = "search_query">
 		<h3>Search Query</h3>
+		<p>{{ query }}</p>
 	</div>
 	{% endif %}
 
 	<div id="search_results" class="w3-container">
-		{% if search_results %}
-			<h3>{{search_results.length}} Results Returned </h3>
-			<script>
-				/* var foods = printedQueries(search_term); */
-				var i;
-				var foods = ["apple", "banana", "orange"];
-				for (i = 0; i < foods.length; i++) {
-					resultsStr += '<div class="w3-button w3-block w3-green w3-left-align">' + '<h3>Name: ' +
-					foods[i] + '</h3>' +
-								'<div id="results_content" class="w3-container w3-hide">' + '<p>Information ' + '</p>' + '</div>' + '</div>';
-				}
-				$('#results-container').html(resultsStr);
-				var $items = $('.w3-button');
-				$items.find('h3').click(openFood('h3'));
-
-				}
-			</script>
-			<!-- <ul>
-				{% for result in search_results %}
-				<li>
-					<p>#{{ result.number }}</p>
-					<div> {{ result.name }} </div>
-				</li>
-				{% endfor %}
-			</ul> -->
+		{% if food_list %}
+			<h3>{{food_list.length}} Results Returned </h3>
+			{% for food in food_list %}
+			<p>{{food}}</p>
+			{% endfor %}
 		{% else %}
 		<h3><em>No results returned. Try another search?</em></h3>
 		<img id ="sad_cone" src="https://media.giphy.com/media/26xBK9cIkUSQ104k8/source.gif"/>
