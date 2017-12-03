@@ -17,7 +17,10 @@ def result(request):
 			food_list = []
 			t = data.similar_entries(10, query)
 			for i in range(len(t)):
-				first_word, rest_word = t[i].split(", ", 1)
+				first_word = t[i]
+				rest_word = ""
+				if(len(t[i].split(", ", 1)) > 1):
+					first_word, rest_word = t[i].split(", ", 1)
 				food_list.append((first_word, rest_word))
 			context['query'] = query
 			context['food_list'] = food_list
