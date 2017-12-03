@@ -13,14 +13,16 @@ class FoodSearch:
                                          'sugar', 'ca', 'sat_fat', 'cholesterol', 'v_b', 'na'])
         self.nut_arr = np.array(t_nutrition.as_matrix())
 
-    def compare(self, f_item, f_that, nut = False):
-        weights = np.random.rand(12)
+    def compare(self, f_item, f_that, nut = False, lucky = False):
+        weights = np.ones(12)
+        if lucky:
+            weights = np.random.rand(12)
         weights = weights/sum(weights)
         if(nut == "cpf"):
             diff = (self.nut_arr[f_item][6:8] - self.nut_arr[f_that][6:8]) ** 2
             return sum(diff)
         elif(nut):
-            return (self.nut_arr[f_item, nut] - self.nut_arr[f_that, nut]) ** 2
+            return (self.nut_arr[f_item][nut] - self.nut_arr[f_that][nut]) ** 2
         else:
             diff = (self.nut_arr[f_item, 4:] - self.nut_arr[f_that, 4:]) ** 2
             return np.dot(weights, diff)
@@ -66,7 +68,7 @@ class FoodSearch:
         print(self.nut_arr[candidates[0]][2])
         return candidates[0], True
 
-    def similar_entries(self, n, f_item_string, nut = None):
+    def similar_entries(self, n, f_item_string, nut = None, lucky = False):
         f_item, f_item_match = self.interpret(f_item_string)
         f_item_plural, f_item_plural_match = self.interpret(f_item_string + "s")
         f_item_plural_plus, f_item_plural_plus_match = self.interpret(f_item_string + "es")
@@ -90,18 +92,18 @@ class FoodSearch:
                 continue
             if (len(best_matches_idx) == n):
                 if(f_item != -1):
-                    heapq.heappushpop(best_matches_idx, (-self.compare(f_item, i, nut), i))
+                    heapq.heappushpop(best_matches_idx, (-self.compare(f_item, i, nut, lucky), i))
                 if (f_item_plural != -1):
-                    heapq.heappushpop(best_matches_idx, (-self.compare(f_item_plural, i, nut), i))
+                    heapq.heappushpop(best_matches_idx, (-self.compare(f_item_plural, i, nut, lucky), i))
                 if (f_item_plural_plus != -1):
-                    heapq.heappushpop(best_matches_idx, (-self.compare(f_item_plural_plus, i, nut), i))
+                    heapq.heappushpop(best_matches_idx, (-self.compare(f_item_plural_plus, i, nut, lucky), i))
             else:
                 if (f_item != -1):
-                    heapq.heappush(best_matches_idx, (-self.compare(f_item, i, nut), i))
+                    heapq.heappush(best_matches_idx, (-self.compare(f_item, i, nut, lucky), i))
                 if (f_item_plural != -1):
-                    heapq.heappush(best_matches_idx, (-self.compare(f_item_plural, i, nut), i))
+                    heapq.heappush(best_matches_idx, (-self.compare(f_item_plural, i, nut, lucky), i))
                 if (f_item_plural_plus != -1):
-                    heapq.heappush(best_matches_idx, (-self.compare(f_item_plural_plus, i, nut), i))
+                    heapq.heappush(best_matches_idx, (-self.compare(f_item_plural_plus, i, nut, lucky), i))
                 while (len(best_matches_idx) > n):
                     heapq.heappop(best_matches_idx)
         best_matches = []
