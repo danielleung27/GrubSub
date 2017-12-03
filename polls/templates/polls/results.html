@@ -1,19 +1,118 @@
-<!-- {% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %} -->
-
 {% load static %}
+<html>
+<title>foother</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
-<h1 id="title">{{ title }}</h1>
+<body>
 
+<!-- <h1 id="title">{{ title }}</h1> -->
+
+<!-- nav bar at the top -->
+<div class="w3-bar w3-white w3-border-bottom w3-xlarge w3-border">
+	<a href="#" class="w3-bar-item w3-button w3-text-green w3-hover-green w3-hover-text-white w3-left w3-padding-16"><b><i class="fa fa-cutlery w3-margin-right"></i>foother</b></a>
+	<a href="directory" class="w3-bar-item-small w3-button w3-text-green w3-hover-green w3-hover-text-white w3-right w3-padding-16" style = "width: 14%">directory</a>
+	<a href="searchresult" class="w3-bar-item-small w3-button w3-text-green w3-hover-green w3-hover-text-white w3-right w3-padding-16" style = "width: 14%">new search</a>
+</div>
+
+<!-- header/search bar -->
+<header class="w3-display-container w3-content w3-hide-small" style="max-width: 2000px">
+  <img class="w3-image" src="https://static.pexels.com/photos/349609/pexels-photo-349609.jpeg" alt="cutting board" width="100%" height="50%" background-size="cover">
+  <div class="w3-display-middle" style="margin:0 auto;width:80%">
+    <div class="w3-bar w3-green w3-text-white" style="padding:16px">
+    	<h3 style="text-indent: 1em; font-size:36px; font-family:Oxygen">Find a food with similar nutrition content</h3>
+      <!-- <button class="w3-bar-item w3-button tablink" style="width:50%" onclick="openLink(event, 'Flight');">Replacement</button>
+      <button class="w3-bar-item w3-button tablink" style="width:50%" onclick="openLink(event, 'Hotel');">Substitution</button> -->
+    </div>
+    <!-- tabs in search bar -->
+    <div id="similarfood" class="w3-container w3-white" style="padding:16px 48px">
+    	<br>
+    	<div class="w3-row-padding">
+    		<input class="w3-input w3-border w3-padding-16" type="text" placeholder="ex: apple">
+    		 <p>
+    		 		<br>
+                     <button class="w3-button w3-green w3-left" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Advanced Options
+                      </a>
+                      <button class="w3-button w3-green w3-right">Search for replacements</button>
+                    </p>
+                      <br>
+                      <br>
+                      <div class='collapse w3-left' id ='collapseExample'>
+                      <p><em>Which nutrients and macros would you like to filter by?</em></p>
+                      <fieldset class="form-group">
+                        <div class="row">
+                          <legend class="col-form-legend col-sm-4"><b>Nutrients and Macros</b></legend>
+                          <div class="col">
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                    Protein
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios2" value="option2" checked>
+                                    Carbs
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios3" value="option3" checked>
+                                    Fats
+                                  </label>
+                              </div>
+                               <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios3" value="option3" checked>
+                                    Cholesterol
+                                  </label>
+                                </div>
+                            </div>
+                            
+                        <div class='col'>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios3" value="option3" checked>
+                                Sodium
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios3" value="option3" checked>
+                                Fiber
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios3" value="option3" checked>
+                                Sugar
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios3" value="option3" checked>
+                                Calcium
+                              </label>
+                            </div>
+                        </div>
+                    </div>
+    		<br>
+    	</div>
+    </div>
+</div>
+
+<div class="w3-container w3-white">
+	<p></p>
+</div>
+<!-- search 
 <div id="search">
 	{% if search_term %}
 	<div id = "search_query">
@@ -41,4 +140,8 @@
 		<img id ="sad_cone" src="https://media.giphy.com/media/26xBK9cIkUSQ104k8/source.gif"/>
 		{% endif %}
 	</div>
-</div>
+</div> -->
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
