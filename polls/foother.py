@@ -1,12 +1,8 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 import heapq
 import sys
 import re
-
-# normal numpy array
-
 
 class FoodSearch:
     def __init__(self):
@@ -31,8 +27,8 @@ class FoodSearch:
         no_match_max = 0;
         no_match_shortest = sys.maxsize;
         no_match_idx = -1;
-        tuple = 0 # NEW
-        max = 0 # NEW
+        tuple = 0
+        max = 0
         heapq.heapify(list_idx)
         key_words = re.split("\W+", f_item_string)
         for i in range(self.nut_arr.shape[0]):
@@ -111,6 +107,3 @@ class FoodSearch:
         for i in range(len(best_matches_idx)):
             best_matches.append(self.nut_arr[best_matches_idx[i][1]][2])
         return best_matches
-
-t = FoodSearch()
-print(t.similar_entries(3, "burger"))
