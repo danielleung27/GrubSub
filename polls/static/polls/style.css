@@ -4,12 +4,19 @@ html, body {
 	height: 100%;
 }
 
-
-h1,h2,h3,h4,h5,h6 {
+nav,h1,h2,h3,h4,h5,h6 {
 	color: white;
 	font-family: "Oxygen", Verdana, Source Sans Pro, sans-serif;
 	font-size: 150%;
 	padding: 10px;
+}
+
+nav {
+	color: #818E3B;
+}
+
+btn-secondary {
+	background-color: #818E3B;
 }
 
 .w3-bar-item {
@@ -37,9 +44,6 @@ h1,h2,h3,h4,h5,h6 {
 	padding: 5%;
 	height: 100%;
 	background-color: #daffaf;
-	/*padding: 5%;
-	height: 100%;*/
-	/*background-color: #daffaf;*/
 	font-size: 15;
     font-family: inherit;
 }
@@ -63,6 +67,15 @@ input {
 
 #search_results img {
 	max-width: 100%;
+}
+
+#adv_options {
+	font-family: "Oxygen", Verdana, Source Sans Pro, sans-serif;
+	font-size: 20px;
+}
+
+#search_header {
+	background-color: rgba(129,142,59,0.9);
 }
 
 #search_query {

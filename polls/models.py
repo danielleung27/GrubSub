@@ -6,7 +6,7 @@ from django.db import models
 
 # django model for food listings
 class Listing(models.Model):
-    id = models.IntegerField()
+    id_num = models.IntegerField()
     food_group = models.CharField(max_length=200)
     long_descr = models.CharField(max_length=200)
     short_descr = models.CharField(max_length=200)
