@@ -387,4 +387,4 @@
     prefixes: [],
     filterSelector: ''
   };
-})(jQuery);
+})(jQuery); 
