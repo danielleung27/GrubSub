@@ -144,9 +144,7 @@
           // we're going to grab the first anchor in the list
           // We can no longer guarantee that a specific letter will be present
           // since adding the "removeDisabled" option
-
         });
-
       }
 
       // adds a class to each LI that has text content inside of it (ie, inside an <a>, a <div>, nested DOM nodes, etc)
@@ -221,7 +219,6 @@
         if (!isPrefix) {
           allCount++;
         }
-
       }
 
       function addDisabledClass() {
@@ -387,4 +384,4 @@
     prefixes: [],
     filterSelector: ''
   };
-})(jQuery); 
+})(jQuery);
