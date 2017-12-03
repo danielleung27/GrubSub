@@ -93,7 +93,7 @@ input {
 	text-align: center;
 	padding: 10px;
 	padding-top: 5px;
-	width: 3-%;
+	width: 30%;
 	min-height: 150px;
 	color: black;
 	background-color: white;
@@ -109,3 +109,59 @@ input {
 	font-size: 15;
     font-family: "Lato", sans-serif;
 }
+
+.listNav,
+.ln-letters {
+  overflow: hidden;
+}
+
+.listNavHide {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.letterCountShow {
+  display: block;
+}
+
+.ln-letters a {
+  border: 1px solid silver;
+  border-right: none;
+  display: block;
+  float: left;
+  font-size: .9em;
+  padding: 2px 6px;
+  text-decoration: none;
+}
+
+.ln-letters .ln-last {
+  border-right: 1px solid silver;
+}
+
+.ln-letters a:hover,
+.ln-letters .ln-selected {
+  background-color: #eaeaea;
+}
+
+.ln-letters .ln-disabled {
+  color: #ccc;
+}
+
+.ln-letter-count {
+  color: #336699;
+  font-size: .8em;
+  left: 0;
+  line-height: 1.35;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 20px;
+}
+
+/*# sourceMappingURL=listnav.css.map */
