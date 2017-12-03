@@ -75,7 +75,7 @@ input {
 	display: inline-block;
 	padding: 10px;
 	text-align: center;
-	width: 60%;
+	width: 70%;
 	height: 90%;
 	float: right;
 	background-color: rgba(129,142,59,0.3);
@@ -100,7 +100,7 @@ input {
 	text-align: center;
 	padding: 10px;
 	padding-top: 5px;
-	width: 35%;
+	width: 25%;
 	float: left;
 	min-height: 150px;
 	color: black;
