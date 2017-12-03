@@ -6,7 +6,6 @@
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <link href="https://fonts.googleapis.com/css?family=Lato:300,300i" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
@@ -43,15 +42,33 @@
         <br>
         <br>
         <div class="w3-container w3-margin-top">
+          <div class="listWrapper">
+            <ul id="myList" style="text-align: left">
+              <br>
+              <li>apple</li>
+              <li>orange</li>
+              <li>cherry</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
 </div>
-</body>
 
 <!-- alphabetical directory -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/static/js/vendor.js"></script>
+<script type="text/javascript" src="/static/js/jquery-listnav.js"></script>
+<script type="text/javascript">
+  $(function() {
+    $('#myList').listnav({
+      initLetter: 'c',
+      includeNums: false
+    });
+  });
+</script>
+</body>
+</html>
 
