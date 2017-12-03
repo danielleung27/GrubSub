@@ -14,9 +14,13 @@ def result(request):
 		query = request.POST.get('search_box')
 		if query:
 			data = FoodSearch()
+			food_list = []
 			t = data.similar_entries(10, query)
+			for i in range(len(t)):
+				first_word, rest_word = t[i].split(", ", 1)
+				food_list.append((first_word, rest_word))
 			context['query'] = query
-			context['food_list'] = t
+			context['food_list'] = food_list
 
 	return render(request, 'polls/searchresult.html', context)
 

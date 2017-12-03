@@ -57,8 +57,8 @@
 				<div id="search_results" class="w3-container">
 					{% if food_list %}
 						<h3>{{food_list|length}} Suggested Substitutions</h3>
-						{% for food in food_list %}
-						<p>{{food}}</p>
+						{% for first, rest in food_list %}
+						<p><strong>{{first}}</strong>: {{rest}}</p>
 						{% endfor %}
 					{% else %}
 					<h3><em>No results returned. Try another search?</em></h3>

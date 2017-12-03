@@ -13,10 +13,6 @@ class FoodSearch:
                                          'sugar', 'ca', 'sat_fat', 'cholesterol', 'v_b', 'na'])
         self.nut_arr = np.array(t_nutrition.as_matrix())
 
-    def return_dataset(self):
-        sorted = self.nut_arr[self.nut_arr[:,2].argsort()]
-        return sorted[:, 2]
-
     def compare(self, f_item, f_that, nut = False, lucky = False):
         weights = np.ones(12)
         if lucky:
