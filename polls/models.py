@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 #from django.utils.encoding import python_2_unicode_compatible
 
+# django model for food listings
 class Listing(models.Model):
     id_num = models.IntegerField()
     food_group = models.CharField(max_length=200)
@@ -21,4 +22,3 @@ class Listing(models.Model):
     cholesterol = models.FloatField()
     vitamin_b = models.FloatField()
     na = models.FloatField()
-
