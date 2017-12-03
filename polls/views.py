@@ -21,4 +21,9 @@ def result(request):
 	return render(request, 'polls/searchresult.html', context)
 
 def directory(request):
-	return render(request, 'polls/directory.html')
+	context = {}
+
+	data = FoodSearch()
+	ds = data.return_dataset()
+	context['data_set'] = ds
+	return render(request, 'polls/directory.html', context)
