@@ -11,36 +11,14 @@
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 <head>
-	<script>
-		function printedQueries(search_term) {
-			var queries = new Array();
-
-			return queries;
-		}
-	</script>
-	<script>
-		function openFood(id) {
-			var x = document.getElementById(id);
-			if (x.className.indexOf("w3-show") == -1) {
-				x.className += " w3-show";
-				x.previousElementSibling.className = 
-					x.previousElementSibling.className.replace("w3-green", "w3-yellow");
-			}
-			else {
-				x.className = x.className.replace(" w3-show", "");
-				x.previousElementSibling.className = 
-					x.previousElementSibling.className.replace("w3-yellow", "w3-green");
-			}
-		}
-	</script>
 </head>
-
 
 
 <body>
 <!-- nav bar at the top -->
-<nav class="w3-text-green navbar navbar-toggleable-md navbar-light bg-faded">
-  <a class="navbar-brand" href="/">grubsub</a>
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <a class="navbar-brand" style="font-size:25px" href="/">grubsub</a>
+
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -48,45 +26,51 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/" style="font-size:18px">search foods<span class="sr-only">(current)</span></a>
+        <a class="nav-link" style="font-size:18px" href="/">search foods<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/directory/" style="font-size:18px">directory</a>
+        <a class="nav-link" style="font-size:18px" href="/directory/">directory</a>
       </li>
     </ul>
   </div>
 </nav>
 
-<!-- search -->
+
 <div class="w3-display-container w3-content" style="max-width: 2000px">
- +	<img class="w3-image" src="{% static 'img/cutting-board.jpg' %}" alt="cutting board" width="100%" height="100%">
- +		  <div class="w3-display-middle" style="margin:0;width:80%">
- +				<div id="search" class="w3-container w3-white">
- +					<!-- search -->
- +					{% if search_term %}
- +						<div id = "search_query" class="w3-container w3-white">
- +							<h3>{{ search_query }}</h3>
- +						</div>
- +					{% else %}
- +						<div id = "search_query" class="w3-container w3-white">
- +							<h3>Search Query</h3>
- +						</div>
- +						{% endif %}
-		  				<div id="search_results" class="w3-container">
-							{% if food_list %}
-						<h3>{{food_list.length}} Results Returned </h3>
+  <img class="w3-image" src="{% static 'img/cutting-board.jpg' %}" alt="cutting board" width="100%" height="100%">
+    <div class="w3-display-middle" style="margin:0;height:80%;width:80%">
+    	<div id="alph_directory" class="w3-container w3-white">
+        <!-- search -->
+
+        <div id="search">
+				{% if search_query %}
+				<div id = "search_query">
+					<h3>{{ search_query }}</h3>
+				</div>
+				{% else %}
+				<div id = "search_query">
+					<h3>Food you'd like to replace</h3>
+					<p>{{ query }}</p>
+				</div>
+				{% endif %}
+
+				<div id="search_results" class="w3-container">
+					{% if food_list %}
+						<h3>{{food_list|length}} Suggested Substitutions</h3>
 						{% for food in food_list %}
 						<p>{{food}}</p>
 						{% endfor %}
-						{% else %}
-						<h3><em>No results returned. Try another search?</em></h3>
-						<img id ="sad_cone" src="https://media.giphy.com/media/26xBK9cIkUSQ104k8/source.gif"/>
-						{% endif %}
-					</div>
-				</div>
+					{% else %}
+					<h3><em>No results returned. Try another search?</em></h3>
+					<img id ="sad_cone" src="https://media.giphy.com/media/26xBK9cIkUSQ104k8/source.gif"/>
+					{% endif %}
 			</div>
+
+		</div>
+      </div>
+    </div>
 </div>
-</header>
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
