@@ -1,7 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .forms import SearchForm
-from .foother import FoodSearch
 
 def index(request):
     return render(request, 'polls/results.html')

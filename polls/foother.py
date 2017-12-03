@@ -3,6 +3,7 @@ import numpy as np
 import heapq
 import sys
 import re
+import numpy as np
 
 class FoodSearch:
     def __init__(self):
@@ -13,7 +14,8 @@ class FoodSearch:
         self.nut_arr = np.array(t_nutrition.as_matrix())
 
     def compare(self, f_item, f_that, nut = False):
-        weight = [0.3,0.3,1,1,1,0.5,2,0.2,1,0.3,0.5,0.1]
+        weights = np.random.rand(12)
+        weights = weights/sum(weights)
         if(nut == "cpf"):
             diff = (self.nut_arr[f_item][6:8] - self.nut_arr[f_that][6:8]) ** 2
             return sum(diff)
@@ -21,7 +23,7 @@ class FoodSearch:
             return (self.nut_arr[f_item, nut] - self.nut_arr[f_that, nut]) ** 2
         else:
             diff = (self.nut_arr[f_item, 4:] - self.nut_arr[f_that, 4:]) ** 2
-            return np.dot(weight, diff)
+            return np.dot(weights, diff)
 
     def interpret(self, f_item_string):
         list_idx = []

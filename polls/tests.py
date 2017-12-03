@@ -8,3 +8,5 @@ from django.test import TestCase
 
 t = foother.FoodSearch()
 print(t.similar_entries(3, "burger"))
+print(t.similar_entries(3, "burger"))
+print(t.similar_entries(3, "burger"))
