@@ -10,34 +10,26 @@
 <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
 <body>
-<nav class="w3-text-green navbar navbar-toggleable-md navbar-light bg-faded">
-  <a class="navbar-brand" href="/" style="font-size:32px">foother</a>
 
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/">search foods<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="directory/">directory</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<!-- <h1 id="title">{{ title }}</h1> -->
+
+<!-- nav bar at the top -->
+<div class="w3-bar w3-white w3-border-bottom w3-xlarge w3-border">
+	<a href="#" class="w3-bar-item w3-button w3-text-green w3-hover-green w3-hover-text-white w3-left w3-padding-16"><b><i class="fa fa-cutlery w3-margin-right"></i>foother</b></a>
+	<a href="directory" class="w3-bar-item-small w3-button w3-text-green w3-hover-green w3-hover-text-white w3-right w3-padding-16" style = "width: 14%">directory</a>
+	<a href="searchresult" class="w3-bar-item-small w3-button w3-text-green w3-hover-green w3-hover-text-white w3-right w3-padding-16" style = "width: 14%">new search</a>
+</div>
 
 <!-- header/search bar -->
 <header class="w3-display-container w3-content w3-hide-small" style="max-width: 2000px">
-  <img class="w3-image" src="{% static 'img/cutting-board.jpg' %}" alt="cutting board" width="100%" height="40%">
-  <div class="w3-display-middle" style="margin:0;width:80%">
-    <div id="search_header" class="w3-text-white" style="padding:16px">
-    	<h3 style="font-size:36px; font-family:Oxygen">Find foods with similar nutrition content</h3>
+  <img class="w3-image" src="https://static.pexels.com/photos/349609/pexels-photo-349609.jpeg" alt="cutting board" width="100%" height="50%" background-size="cover">
+  <div class="w3-display-middle" style="margin:0 auto;width:80%">
+    <div class="w3-bar w3-green w3-text-white" style="padding:16px">
+    	<h3 style="text-indent: 1em; font-size:36px; font-family:Oxygen">Find a food with similar nutrition content</h3>
+      <!-- <button class="w3-bar-item w3-button tablink" style="width:50%" onclick="openLink(event, 'Flight');">Replacement</button>
+      <button class="w3-bar-item w3-button tablink" style="width:50%" onclick="openLink(event, 'Hotel');">Substitution</button> -->
     </div>
     <!-- tabs in search bar -->
     <div id="similarfood" class="w3-container w3-white" style="padding:16px 48px">
@@ -46,14 +38,10 @@
     		<input class="w3-input w3-border w3-padding-16" type="text" placeholder="ex: apple">
     		 <p>
     		 		<br>
-                     <button class="w3-button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                     <button class="w3-button w3-green w3-left" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Advanced Options
                       </a>
-
-                       <form action="/results/" method="POST">
-                        {% csrf_token %}
-                      <button class="btn btn-secondary w3-right" style="background-color: #818E3B;">Search for replacements</button>
-                    </form>
+                      <button class="w3-button w3-green w3-right">Search for replacements</button>
                     </p>
                       <br>
                       <br>
@@ -61,7 +49,7 @@
                       <p><em>Which nutrients and macros would you like to filter by?</em></p>
                       <fieldset class="form-group">
                         <div class="row">
-                        
+                          <legend class="col-form-legend col-sm-4"><b>Nutrients and Macros</b></legend>
                           <div class="col">
                                 <div class="form-check">
                                   <label class="form-check-label">
@@ -75,8 +63,6 @@
                                     Carbs
                                   </label>
                                 </div>
-                          </div>
-                          <div class="col">
                                 <div class="form-check">
                                   <label class="form-check-label">
                                     <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios3" value="option3" checked>
@@ -104,8 +90,6 @@
                                 Fiber
                               </label>
                             </div>
-                          </div>
-                            <div class="col">
                             <div class="form-check">
                               <label class="form-check-label">
                                 <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios3" value="option3" checked>
@@ -124,8 +108,40 @@
     	</div>
     </div>
 </div>
-</body>
 
+<div class="w3-container w3-white">
+	<p></p>
+</div>
+<!-- search 
+<div id="search">
+	{% if search_term %}
+	<div id = "search_query">
+		<h3>{{ search_query }}</h3>
+	</div>
+	{% else %}
+	<div id = "search_query">
+		<h3>Search Query</h3>
+	</div>
+	{% endif %}
+
+	<div id="search_results">
+		{% if search_results %}
+			<h3>{{search_results.length}} Results Returned </h3>
+			<ul>
+				{% for result in search_results %}
+				<li>
+					<p>#{{ result.number }}</p>
+					<div> {{ result.name }} </div>
+				</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+		<h3><em>No results returned. Try another search?</em></h3>
+		<img id ="sad_cone" src="https://media.giphy.com/media/26xBK9cIkUSQ104k8/source.gif"/>
+		{% endif %}
+	</div>
+</div> -->
+</body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>

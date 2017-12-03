@@ -36,11 +36,11 @@
 </head>
 
 
-<!-- <h1 id="title">{{ title }}</h1> -->
 
+<body>
 <!-- nav bar at the top -->
 <nav class="w3-text-green navbar navbar-toggleable-md navbar-light bg-faded">
-  <a class="navbar-brand" href="/">foother</a>
+  <a class="navbar-brand" href="/" style="font-size:32px">foother</a>
 
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -58,50 +58,57 @@
   </div>
 </nav>
 
-<!-- search -->
-<div id="search">
-	{% if search_term %}
-	<div id = "search_query">
-		<h3>{{ search_query }}</h3>
-	</div>
-	{% else %}
-	<div id = "search_query">
-		<h3>Search Query</h3>
-	</div>
-	{% endif %}
+<div class="w3-display-container w3-content" style="max-width: 2000px">
+	<img class="w3-image" src="{% static 'img/cutting-board.jpg' %}" alt="cutting board" width="100%" height="100%">
+		  <div class="w3-display-middle" style="margin:0;width:80%">
+				<div id="search" class="w3-container w3-white">
+					<!-- search -->
+					{% if search_term %}
+						<div id = "search_query" class="w3-container w3-white">
+							<h3>{{ search_query }}</h3>
+						</div>
+					{% else %}
+						<div id = "search_query" class="w3-container w3-white">
+							<h3>Search Query</h3>
+						</div>
+						{% endif %}
 
-	<div id="search_results" class="w3-container">
-		{% if search_results %}
-			<h3>{{search_results.length}} Results Returned </h3>
-			<script>
-				/* var foods = printedQueries(search_term); */
-				var i;
-				var foods = ["apple", "banana", "orange"];
-				for (i = 0; i < foods.length; i++) {
-					resultsStr += '<div class="w3-button w3-block w3-green w3-left-align">' + '<h3>Name: ' +
-					foods[i] + '</h3>' +
-								'<div id="results_content" class="w3-container w3-hide">' + '<p>Information ' + '</p>' + '</div>' + '</div>';
-				}
-				$('#results-container').html(resultsStr);
-				var $items = $('.w3-button');
-				$items.find('h3').click(openFood('h3'));
+						<div id="search_results" class="w3-container w3-light-grey">
+							{% if search_results %}
+								<h3>{{search_results.length}} Results Returned </h3>
+								<script>
+									var foods = printedQueries(search_term);
+									var i;
+									var foods = ["apple", "banana", "orange"];
+									for (i = 0; i < foods.length; i++) {
+										resultsStr += '<div class="w3-button w3-block w3-green w3-left-align">' + '<h3>Name: ' +
+										foods[i] + '</h3>' + '<div id="results_content" class="w3-container w3-hide">' + '<p>Information ' + '</p>' + '</div>' + '</div>';
+									}
+									$('#results-container').html(resultsStr);
+									var $items = $('.w3-button');
+									$items.find('h3').click(openFood('h3'));
 
-				}
-			</script>
-			<!-- <ul>
-				{% for result in search_results %}
-				<li>
-					<p>#{{ result.number }}</p>
-					<div> {{ result.name }} </div>
-				</li>
-				{% endfor %}
-			</ul> -->
-		{% else %}
-		<h3><em>No results returned. Try another search?</em></h3>
-		<img id ="sad_cone" src="https://media.giphy.com/media/26xBK9cIkUSQ104k8/source.gif"/>
-		{% endif %}
+									}
+									<ul>
+									{% for result in search_results %}
+									<li>
+										<p>#{{ result.number }}</p>
+										<div> {{ result.name }} </div>
+									</li>
+									{% endfor %}
+								</ul> -->
+								</script>
+								
+							{% else %}
+							<h3><em>No results returned. Try another search?</em></h3>
+							<img id ="sad_cone" src="https://media.giphy.com/media/26xBK9cIkUSQ104k8/source.gif"/>
+							{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
+</body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
