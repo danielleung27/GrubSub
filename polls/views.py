@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
 from .models import Question
 from .forms import SearchForm
+from .foother import FoodSearch
 
 def search(request):
 	form = SearchForm()
